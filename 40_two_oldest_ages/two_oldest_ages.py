@@ -14,10 +14,23 @@ def two_oldest_ages(ages):
         (2, 5)
     """
 
-    # NOTE: don't worry about an optimized runtime here; it's fine if
-    # you have a runtime worse than O(n)
+    # find two oldest by sorting unique; this is O(n log n)
 
-    # NOTE: you can sort lists with lst.sort(), which works in place (mutates);
-    # you may find it helpful to research the `sorted(iter)` function, which
-    # can take *any* type of list-like-thing, and returns a new, sorted list
-    # from it.
+    uniq_ages = set(ages)
+    oldest = sorted(uniq_ages)[-2:]
+    return tuple(oldest)
+
+    # a longer, but O(n) runtime would be:
+    #
+    # uniq_ages = set(ages)
+    # oldest = None
+    # second = None
+    #
+    # for age in uniq_ages:
+    #     if oldest is None or age > oldest:
+    #         second = oldest
+    #         oldest = age
+    #     elif second is None or age > second:
+    #         second = age
+    #
+    # return (second, oldest)
